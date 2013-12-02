@@ -15,7 +15,7 @@ This project offers two distinct features. It helps you:
 
 Both features work with [Optimus](http://github.com/magnars/optimus),
 or any other asset serving framework that uses the same data structure
-for asset representation.
+for asset representation: `[{:path :contents}]`
 
 ## Prepopulating the Angular.JS template cache
 
@@ -45,8 +45,8 @@ Here's an example usage:
 1. You create the template cache in your `get-assets` function along
    with your other assets.
 
-2. Notice that `create-template-cache` creates a single asset, so to
-   concat with the other assets it's in a vector.
+2. Notice that `create-template-cache` creates a single asset, so it's
+   in a vector to concat with the other assets .
 
 3. You use the `:path` to reference the virtual asset when linking.
 
@@ -96,7 +96,7 @@ than the js-minifier. This would be a good way of doing it:
 (defn my-optimize [assets options]
   (-> assets
       (optimus-angular/prepare-for-minification)
-      (optimizations/all options)))
+      (optimus.optimizations/all options)))
 ```
 
 This will change code like this:
