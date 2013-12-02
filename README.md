@@ -1,4 +1,4 @@
-# optimus-angular
+# optimus-angular [![Build Status](https://secure.travis-ci.org/magnars/optimus-angular.png)](http://travis-ci.org/magnars/optimus-angular)
 
 Angular.JS optimizations for [Optimus](http://github.com/magnars/optimus).
 
