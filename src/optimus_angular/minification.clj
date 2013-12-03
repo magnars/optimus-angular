@@ -15,11 +15,24 @@
       (throw (Exception. (str prefix error))))
     text))
 
+(defn- run-script-with-error-handling [context script file-path]
+  (throw-v8-exception
+   (try
+     (v8/run-script-in-context context script)
+     (catch Exception e
+       (str "ERROR: " (.getMessage e))))
+   file-path))
+
+(defn normalize-line-endings [s]
+  (-> s
+      (str/replace "\r\n" "\n")
+      (str/replace "\r" "\n")))
+
 (defn- ngmin-code [js]
   (str "(function () {
     try {
         var ngmin = require('ngmin');
-        var generated = ngmin.annotate('" (escape js) "');
+        var generated = ngmin.annotate('" (escape (normalize-line-endings js)) "');
         return generated;
     } catch (e) { return 'ERROR: ' + e.message; }
 }());"))
@@ -36,8 +49,7 @@
   ([js] (ngmin-js js {}))
   ([js options] (ngmin-js (create-ngmin-context) js options))
   ([context js options]
-     (throw-v8-exception (v8/run-script-in-context context (ngmin-code js))
-                         (:path options))))
+     (run-script-with-error-handling context (ngmin-code js) (:path options))))
 
 (defn prepare-one-for-minification
   [context asset]

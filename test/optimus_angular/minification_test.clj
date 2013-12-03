@@ -35,6 +35,11 @@
      {:path "styles.css" :contents "#id { margin: 0; }"}])
 
 (fact
-   "It includes the path in exception."
-   (prepare-for-minification [{:path "app.js" :contents "angular.module('whatever')."}])
-   => (throws Exception "Exception in app.js: Line 1: Unexpected end of input"))
+ "It includes the path in exception."
+ (prepare-for-minification [{:path "app.js" :contents "angular.module('whatever')."}])
+ => (throws Exception "Exception in app.js: Line 1: Unexpected end of input"))
+
+(fact
+ "It doesn't fall over and die when encountering DOS line endings."
+ (prepare-for-minification [{:path "app.js" :contents "angular.module('whatever').factory('MyFactory', function ($http) {});\r\n"}])
+ => [{:path "app.js" :contents "angular.module('whatever').factory('MyFactory', [\n  '$http',\n  function ($http) {\n  }\n]);"}])
