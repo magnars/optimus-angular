@@ -15,6 +15,10 @@
 
 (defn- create-template-cache-js
   [module templates]
+  (when-not (and (seq templates)
+                 (every? :path templates)
+                 (every? :contents templates))
+    (throw (IllegalArgumentException. ":templates must be list of assets - try using optimus.assets/load-assets.")))
   (str "angular.module(\"" module  "\").run([\"$templateCache\", function ($templateCache) {\n"
        (apply str (map template-cache-put templates))
        "}]);" ))

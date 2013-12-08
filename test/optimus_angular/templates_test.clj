@@ -33,3 +33,12 @@
  => {:path "/multiple-templates.js"
      :bundle "app.js"
      :contents "angular.module(\"multiple\").run([\"$templateCache\", function ($templateCache) {\n  $templateCache.put(\"/templates/multiple/one.html\", \"<h1>One</h1>\\n\\n<p>I am one.</p>\\n\\n<script>\\n  // Test\\n  /* comments */\\n  var foo = 'bar';\\n</script>\\n\");\n  $templateCache.put(\"/templates/multiple/two/two.html\", \"<h2>Two</h2>\\n\\n<p>We are two.</p>\\n\");\n}]);"})
+
+(fact
+ "You'll get a decent error message if you try to give it something
+  that isn't a list of assets."
+
+ (create-template-cache
+  :path "/my-templates.js"
+  :module "myapp"
+  :templates ["/templates/simple.html"]) => (throws IllegalArgumentException ":templates must be list of assets - try using optimus.assets/load-assets."))
