@@ -1,5 +1,6 @@
 (ns optimus-angular.templates
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [optimus.homeless :refer [assoc-non-nil]]))
 
 (defn- escaped-js-string
   [s]
@@ -23,8 +24,13 @@
        (apply str (map template-cache-put templates))
        "}]);" ))
 
+(defn- max? [vals]
+  (when (seq vals)
+    (apply max vals)))
+
 (defn create-template-cache
   [& {:keys [path module templates bundle]}]
-  {:path path
-   :bundle bundle
-   :contents (create-template-cache-js module templates)})
+  (-> {:path path
+       :bundle bundle
+       :contents (create-template-cache-js module templates)}
+      (assoc-non-nil :last-modified (max? (keep :last-modified templates)))))

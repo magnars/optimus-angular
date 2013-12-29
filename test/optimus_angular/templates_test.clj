@@ -42,3 +42,15 @@
   :path "/my-templates.js"
   :module "myapp"
   :templates ["/templates/simple.html"]) => (throws IllegalArgumentException ":templates must be list of assets - try using optimus.assets/load-assets."))
+
+(fact
+ "The template file uses the newest :last-modified from the assets."
+
+ (-> (create-template-cache
+      :path "/templates.js"
+      :bundle "app.js"
+      :module "myapp"
+      :templates [{:path "/templates/a.html" :contents "" :last-modified 1}
+                  {:path "/templates/b.html" :contents "" :last-modified 2}
+                  {:path "/templates/c.html" :contents ""}])
+     :last-modified) => 2)
