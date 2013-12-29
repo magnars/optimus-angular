@@ -1,10 +1,11 @@
-(defproject optimus-angular "0.1.2"
+(defproject optimus-angular "0.2.0"
   :description "Angular.JS optimizations for Optimus"
   :url "http://github.com/magnars/optimus-angular"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [optimus "0.12.6"]]
+                 [optimus "0.13.3"]
+                 [org.clojure/math.combinatorics "0.0.7"]]
   :profiles {:dev {:dependencies [[midje "1.5.0"]]
                    :plugins [[lein-midje "3.0.0"]
                              [lein-shell "0.3.0"]]}}

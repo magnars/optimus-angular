@@ -4,7 +4,7 @@ Angular.JS optimizations for [Optimus](http://github.com/magnars/optimus).
 
 ## Install
 
-Add `[optimus-angular "0.1.2"]` to `:dependencies` in your `project.clj`.
+Add `[optimus-angular "0.2.0"]` to `:dependencies` in your `project.clj`.
 
 ## Usage
 
@@ -117,6 +117,12 @@ which can be safely minified. There are limitations tho.
 Optimus-angular uses [ngmin](https://github.com/btford/ngmin) to do
 this job. Please read more about how it works - and doesn't work - in
 [the ngmin README](https://github.com/btford/ngmin).
+
+## Changelog
+
+#### From 0.1.0 to 0.2.0
+
+- Add Last-Modified headers to template asset
 
 ## Contributing
 
