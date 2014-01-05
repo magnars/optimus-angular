@@ -1,4 +1,4 @@
-(defproject optimus-angular "0.2.1"
+(defproject optimus-angular "0.2.2"
   :description "Angular.JS optimizations for Optimus"
   :url "http://github.com/magnars/optimus-angular"
   :license {:name "Eclipse Public License"
