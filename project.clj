@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [optimus "0.13.3"]
-                 [org.clojure/math.combinatorics "0.0.7"]]
+                 [clj-v8 "0.1.5"]]
   :profiles {:dev {:dependencies [[midje "1.5.0"]]
                    :plugins [[lein-midje "3.0.0"]
                              [lein-shell "0.3.0"]]}}

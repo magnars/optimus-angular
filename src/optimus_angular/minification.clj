@@ -1,6 +1,6 @@
 (ns optimus-angular.minification
   (:require [clojure.string :as str]
-            [optimus.v8 :as v8]))
+            [v8.core :as v8]))
 
 (defn- escape [s]
   (-> s
