@@ -4,7 +4,7 @@ Angular.JS optimizations for [Optimus](http://github.com/magnars/optimus).
 
 ## Install
 
-Add `[optimus-angular "0.2.0"]` to `:dependencies` in your `project.clj`.
+Add `[optimus-angular "0.2.1"]` to `:dependencies` in your `project.clj`.
 
 ## Usage
 
