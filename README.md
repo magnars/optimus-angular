@@ -11,7 +11,7 @@ Add `[optimus-angular "0.2.2"]` to `:dependencies` in your `project.clj`.
 This project offers two distinct features. It helps you:
 
 - Prepopulate the Angular.JS template cache.
-- Prepare JavaScript for minification with [ngmin](https://github.com/btford/ngmin).
+- Prepare JavaScript for minification with [ng-annotate](https://github.com/olov/ng-annotate).
 
 Both features work with [Optimus](http://github.com/magnars/optimus),
 or any other asset serving framework that uses the same data structure
@@ -114,9 +114,9 @@ angular.module('my-app').controller('MyCtrl', [
 ```
 
 which can be safely minified. There are limitations tho.
-Optimus-angular uses [ngmin](https://github.com/btford/ngmin) to do
-this job. Please read more about how it works - and doesn't work - in
-[the ngmin README](https://github.com/btford/ngmin).
+Optimus-angular uses [ng-annotate](https://github.com/olov/ng-annotate) to do
+this job. Please read more about how it works in
+[the ng-annotate README](https://github.com/olov/ng-annotate).
 
 ## Changelog
 

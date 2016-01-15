@@ -28,37 +28,38 @@
       (str/replace "\r\n" "\n")
       (str/replace "\r" "\n")))
 
-(defn- ngmin-code [js]
+(defn- ng-annotate-code [js]
   (str "(function () {
     try {
-        var ngmin = require('ngmin');
-        var generated = ngmin.annotate('" (escape (normalize-line-endings js)) "');
-        return generated;
+        var nga = require('ng-annotate');
+        var generated = nga('" (escape (normalize-line-endings js)) "', { add: true });
+        if (generated.errors) return 'ERROR: ' + generated.errors[0];
+        return generated.src;
     } catch (e) { return 'ERROR: ' + e.message; }
 }());"))
 
-(def ngmin
-  (slurp (clojure.java.io/resource "ngmin.js")))
+(def ng-annotate
+  (slurp (clojure.java.io/resource "ng-annotate.js")))
 
-(defn create-ngmin-context []
+(defn create-ng-annotate-context []
   (let [context (v8/create-context)]
-    (v8/run-script-in-context context ngmin)
+    (v8/run-script-in-context context ng-annotate)
     context))
 
-(defn ngmin-js
-  ([js] (ngmin-js js {}))
-  ([js options] (ngmin-js (create-ngmin-context) js options))
+(defn ng-annotate-js
+  ([js] (ng-annotate-js js {}))
+  ([js options] (ng-annotate-js (create-ng-annotate-context) js options))
   ([context js options]
-     (run-script-with-error-handling context (ngmin-code js) (:path options))))
+     (run-script-with-error-handling context (ng-annotate-code js) (:path options))))
 
 (defn prepare-one-for-minification
   [context asset]
   (let [#^String path (:path asset)]
     (if (.endsWith path ".js")
-      (update-in asset [:contents] #(ngmin-js context % {:path path}))
+      (update-in asset [:contents] #(ng-annotate-js context % {:path path}))
       asset)))
 
 (defn prepare-for-minification
   ([assets options] (prepare-for-minification assets))
-  ([assets] (let [context (create-ngmin-context)]
+  ([assets] (let [context (create-ng-annotate-context)]
               (map #(prepare-one-for-minification context %) assets))))
