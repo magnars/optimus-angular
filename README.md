@@ -4,7 +4,7 @@ Angular.JS optimizations for [Optimus](http://github.com/magnars/optimus).
 
 ## Install
 
-Add `[optimus-angular "0.2.2"]` to `:dependencies` in your `project.clj`.
+Add `[optimus-angular "0.3.0"]` to `:dependencies` in your `project.clj`.
 
 ## Usage
 
@@ -120,7 +120,11 @@ this job. Please read more about how it works in
 
 ## Changelog
 
-#### From 0.1.0 to 0.2.0
+#### From 0.2 to 0.3
+
+- Switch from [ngmin](https://github.com/btford/ngmin) to [ng-annotate](https://github.com/olov/ng-annotate)
+
+#### From 0.1 to 0.2
 
 - Add Last-Modified headers to template asset
 
