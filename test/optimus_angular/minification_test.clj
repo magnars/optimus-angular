@@ -31,7 +31,7 @@
 (fact
  "It includes the path in exception."
  (prepare-for-minification [{:path "app.js" :contents "angular.module('whatever')."}])
- => (throws Exception "Exception in app.js: error: couldn't process source due to parse error"))
+ => (throws Exception "Exception in app.js: error: couldn't process source due to parse error (line -1, col -1)"))
 
 (fact
  "It doesn't fall over and die when encountering DOS line endings."
