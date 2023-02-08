@@ -4,7 +4,12 @@ Angular.JS optimizations for [Optimus](http://github.com/magnars/optimus).
 
 ## Install
 
-Add `[optimus-angular "0.3.0"]` to `:dependencies` in your `project.clj`.
+Add to `:dependencies` in your `project.clj`:
+
+```
+[optimus "2023-02-08"]
+[optimus-angular "2023-02-08"]
+```
 
 ## Usage
 
